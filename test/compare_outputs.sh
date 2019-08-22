@@ -1,6 +1,8 @@
 #!/bin/bash
-
-# Compare files in dir1 and dir2 and ensure equality
+###
+# Compare files in dir1 and dir2. When file names are equivalent,
+# run a diff on them.
+### 
 
 if [ "$#" -ne 2 ]; then
    echo 'Invalid argument(s).'; \
