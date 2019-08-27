@@ -1,0 +1,15 @@
+{
+    "config": {
+        "findmetdata": {
+            "met_root_dir": "/data/Met/CANSAC/6km/ARL/",
+            "met_format": "arl",
+            "arl": {
+                "index_filename_pattern": "arl12hrindex.csv"
+            },
+            "time_window": {
+                "first_hour": "2014-05-29T14:00:00",
+                "last_hour": "2014-05-30T05:00:00"
+            }
+        }
+    }
+}

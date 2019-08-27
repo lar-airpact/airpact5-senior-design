@@ -1,0 +1,88 @@
+{
+    "fire_information": [
+        {
+            "type": "wildfire",
+            "id": "SF11C14225236095807750",
+            "growth": [
+                {
+                    "location": {
+                        "longitude": -119.7615805,
+                        "ecoregion": "western",
+                        "utc_offset": "-07:00",
+                        "latitude": 37.909644,
+                        "area": 10000.0
+                    },
+                    "end": "2014-05-30T17:00:00",
+                    "start": "2014-05-29T17:00:00"
+                }
+            ],
+            "event_of": {
+                "name": "Natural Fire near Yosemite, CA",
+                "id": "SF11E826544"
+            }
+        },
+        {
+            "type": "wildfire",
+            "id": "sdk2risodijfdsf",
+            "growth": [
+                {
+                    "location": {
+                        "longitude": -120.0,
+                        "ecoregion": "western",
+                        "utc_offset": "-07:00",
+                        "latitude": 39.3,
+                        "area": 20000.0
+                    },
+                    "end": "2014-05-30T17:00:00",
+                    "start": "2014-05-29T17:00:00"
+                }
+            ],
+            "event_of": {
+                "name": "Natural Fire in North Tahoe",
+                "id": "sdfkj234kljfd"
+            }
+        },
+        {
+            "type": "wildfire",
+            "id": "sdf342klsfjfsdf",
+            "growth": [
+                {
+                    "location": {
+                        "longitude": -120.7576061,
+                        "ecoregion": "western",
+                        "utc_offset": "-07:00",
+                        "latitude": 38.6966432,
+                        "area": 40000.0
+                    },
+                    "end": "2014-05-30T17:00:00",
+                    "start": "2014-05-29T17:00:00"
+                }
+            ],
+            "event_of": {
+                "name": "Natural Fire new Placerville",
+                "id": "sdfkj234kljfd"
+            }
+        },
+        {
+            "type": "wildfire",
+            "id": "weru24oir",
+            "growth": [
+                {
+                    "location": {
+                        "longitude": -122.0,
+                        "ecoregion": "western",
+                        "utc_offset": "-07:00",
+                        "latitude": 41.3,
+                        "area": 20000.0
+                    },
+                    "end": "2014-05-30T17:00:00",
+                    "start": "2014-05-29T17:00:00"
+                }
+            ],
+            "event_of": {
+                "name": "Natural Fire near Mt Shasta",
+                "id": "sdfkj234kljfd"
+            }
+        }
+    ]
+}

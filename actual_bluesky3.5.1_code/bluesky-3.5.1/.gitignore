@@ -1,0 +1,16 @@
+.DS_Store
+*.pyc
+/tmp/
+/build/
+/dist/
+/bluesky.egg-info/
+/logs/
+MESSAGE
+profile.txt
+.cache
+/data/
+/output/
+/input/
+/working/
+dev-private/
+export/

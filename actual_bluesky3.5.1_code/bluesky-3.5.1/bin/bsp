@@ -1,0 +1,325 @@
+#!/usr/bin/env python3
+
+"""bsp: Runs BlueSky
+
+Example calls:
+ > bsp -i fires-before.json -o fires-after.json
+ > cat fires-before.json | bsp > fires-after.json
+ > bsp < fires-before.json > fires-after.json
+"""
+
+import fcntl
+import json
+import logging
+import os
+import sys
+import traceback
+
+from afscripting import args as scripting_args
+from afscripting.utils import exit_with_msg
+from pyairfire import process
+
+try:
+    from bluesky import (
+        datetimeutils, exceptions,
+        modules, models, __version__
+    )
+except:
+    import os
+    root_dir = os.path.abspath(os.path.join(sys.path[0], '../'))
+    sys.path.insert(0, root_dir)
+    from bluesky import (
+        datetimeutils, exceptions,
+        modules, models, __version__
+    )
+
+__author__ = "Joel Dubowy"
+
+REQUIRED_ARGS = []
+
+OPTIONAL_ARGS = [
+    {
+        'short': '-i',
+        'long': '--input-file',
+        'dest': 'input_file',
+        'help': 'input file comtaining JSON formatted fire data',
+        'action': "store",
+        'default': None
+    },
+    {
+        'short': '-n',
+        'long': '--no-input',
+        'help': 'tells bsp not to expect -i or piped input',
+        'action': "store_true",
+        'default': False
+    },
+    {
+        'short': '-o',
+        'long': '--output-file',
+        'dest': 'output_file',
+        'help': 'output file comtaining JSON formatted fire data',
+        'action': "store",
+        'default': None
+    },
+    {
+        'short': "-C",
+        'long': '--config-option',
+        'dest': 'config_options',
+        'help': "Config option override, formatted like 'section.*.key=stringvalue'",
+        'action': scripting_args.ConfigOptionAction
+    },
+    {
+        'short': "-B",
+        'long': '--boolean-config-option',
+        'dest': 'config_options',
+        'help': "Config option override, formatted like 'section.*.key=boolvalue'",
+        'action': scripting_args.BooleanConfigOptionAction
+    },
+    {
+        'short': "-I",
+        'long': '--integer-config-option',
+        'dest': 'config_options',
+        'help': "Config option override, formatted like 'section.*.key=intvalue'",
+        'action': scripting_args.IntegerConfigOptionAction
+    },
+    {
+        'short': "-F",
+        'long': '--float-config-option',
+        'dest': 'config_options',
+        'help': "Config option override, formatted like 'section.*.key=floatvalue'",
+        'action': scripting_args.FloatConfigOptionAction
+    },
+    {
+        'short': "-J",
+        'long': '--json-config-option',
+        'dest': 'config_options',
+        'help': "Config option override supporting any json formatted value, formatted like 'section.*.key=jsonvalue'",
+        'action': scripting_args.JSONConfigOptionAction
+    },
+    {
+        'short': '-c',
+        'long': '--config-file',
+        'dest': 'config_file_options',
+        'help': 'config file containing JSON formatted overrides for default config values',
+        'action': scripting_args.ConfigFileAction
+    },
+    {
+        #'short': "-v",
+        'long': '--version',
+        'dest': 'version',
+        'action': 'store_true',
+        'help': "Output bluesky package version and exit.",
+        'default': False
+    },
+    {
+        'long': '--run-id',
+        'dest': 'run_id',
+        'help': 'custom run id to use instead of generating a new GUID'
+    },
+    {
+        'long': '--today',
+        'help': ("What's considered the current day in the context of the "
+            "run; defaults to current UTC day; used to replace config "
+            "wildcards ('{today}', etc.)")
+        # Note: not using scripting_args.ParseDatetimeAction because
+        #  bsp supports things like '{today}', '{yesterday}', etc.
+    }
+
+]
+
+POSITIONAL_ARGS = [
+    {
+        'long': 'module',
+        'nargs': '*'
+    }
+]
+
+# Note: the trailing space seems to be the only way to add an extra trailing line
+EPILOG_STR = """\
+Available Modules:
+
+    {}
+
+Configuration:
+
+    Config settings can be specified in the input data, in separate config
+    file(s), and as command line options.  First the input data is loaded,
+    then the file files are applied, and finally the comand line settings
+    are applied.  If multiple config files are specified, they will be applied
+    in the order they are specified. The same holds true for settings
+    specified on the command line.
+
+    For example if input.json specifies foo=foo, config1.json specifies
+    foo=bar, and config2.json specifies foo=baz, and if bsp is invoked like:
+
+     $ bsp -i input.json -c config1.json -c config2.json
+
+    then foo will be set to 'baz'.  If you add '-C foo=bsdf' to the command,
+    then regardless of where it is specified in the command, foo will be
+    'bsdf'.
+ """.format('\n    '.join(modules.AVAILABLE_MODULES))
+
+def is_piped_input():
+    """Returns True if input data is piped into bsp
+
+    TODO: Get this method working!
+
+      All three of the following methods seem to work, but then falsely (?)
+      indicate piped input when bsp is run using subprocess.check_output
+
+      1) using sys.stdin.isatty:
+
+        >>>  return not sys.stdin.isatty()
+
+      2) using os.isattty:
+
+        >>>  not os.isatty(sys.stdin.fileno())
+
+      3) temporarily setting sys.stdin to non-blocking:
+
+        >>>  fd = sys.stdin.fileno()
+        >>>  fl = fcntl.fcntl(fd, fcntl.F_GETFL)
+        >>>  fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+        >>>  r = False
+        >>>  try:
+        >>>      sys.stdin.seek(0)
+        >>>      r = True
+        >>>  except:
+        >>>      pass
+        >>>  finally:
+        >>>      fcntl.fcntl(fd, fcntl.F_SETFL, fl | ~os.O_NONBLOCK)
+        >>>  return r
+
+      See http://stackoverflow.com/questions/33871836/find-out-if-there-is-input-from-a-pipe-or-not-in-python
+      Other suggestions in the SO thread don't work for bsp's need.
+
+      So, for now, this method just always returns False, and downstream code
+      just ignores stdin if either '-i' or '-n' are specified
+    """
+    return False
+
+def parse_args():
+    """Parses args - required, optional, and positional
+
+    Note: We're doing this manually, rather than call
+    scripting_args.parse_args, because we want to be able
+    to replace datetime format chars in the log file name
+    (which is done after FiresManager.today is set).
+    """
+    parser = scripting_args.ArgumentParser()
+    parser.epilog = EPILOG_STR
+    parser.formatter_class = scripting_args.RawTextHelpFormatter
+    scripting_args.add_arguments(parser, REQUIRED_ARGS, required=True)
+    scripting_args.add_arguments(parser, OPTIONAL_ARGS)
+    scripting_args.add_arguments(parser, POSITIONAL_ARGS)
+    scripting_args.add_logging_options(parser)
+    args = parser.parse_args()
+    output_version(parser, args)
+    validate_args(args)
+
+    return args
+
+def validate_args(args):
+    # Only one of three input scenarios allowed at a time - 1) piped, 2) read
+    # from file, 3) --no-input.  There's extra logic here to return error
+    # messages specific to each bad combination
+    is_po = is_piped_input()
+    if is_po and args.no_input and args.input_file:
+        exit_with_msg("Specify '-n'/'--no-input' or "
+            "'-i'/'--input-file', or pipe input - not all three.")
+    elif args.no_input and args.input_file:
+        exit_with_msg("Options '-n'/'--no-input' and "
+            "'-i'/'--input-file' can't be specified simultaneously")
+    elif args.no_input and is_po:
+        exit_with_msg("Option '-n'/'--no-input' can't be "
+            "specified if there's piped input")
+    elif args.input_file and is_po:
+        exit_with_msg("Option '-i'/'--input-file' can't be "
+            "specified if there's piped input")
+
+    # TODO: validate other args values as necessary
+
+def exit_with_traceback(e):
+    logging.error(e)
+    logging.debug(traceback.format_exc())
+    exit_with_msg(e)
+
+def output_version(parser, args):
+    if args.version:
+        sys.stdout.write("bsp (bluesky) version {}\n".format(__version__))
+        sys.exit(0)
+
+def setup(args):
+    fires_manager = models.fires.FiresManager()
+    if args.today:
+        fires_manager.today = args.today
+
+    # configure logging as soon as possible, before any log messages
+    # are written
+    if args.log_file:
+        args.log_file = datetimeutils.fill_in_datetime_strings(
+                args.log_file, today=fires_manager.today)
+    # Note: The second argument to configure_logging_from_args
+    #  is not used. It must be left over from a previous version
+    #  of the function. So just pass in None.
+    scripting_args.configure_logging_from_args(args, None)
+    logging.info("BlueSky v%s", __version__)
+    scripting_args.output_args(args)
+    #afscripting.utils.log_config(args.config_options)
+
+    # Note: Calling code handles exception
+    if not args.no_input:
+        fires_manager.loads(input_file=args.input_file)
+
+    # run_id must be specified after the call to loads (as opposed to when
+    # instantiatiing fires_manager) - otherwise, loads will delete it
+    # (since loads wipes fires_manager and then populates it from scratch).
+    # If run_id is defined in both the input file and in args.run_id, an
+    # exception will be raised, since run_id can only be set once (with the
+    # exception of being able to be reset in or after a call to loads).
+    if args.run_id:
+        fires_manager.run_id = args.run_id
+    return fires_manager
+
+def main():
+    args = parse_args()
+
+    try:
+        fires_manager = setup(args)
+
+        # modules may be specified either in the input json or as command line
+        # args, but not in both places
+        if args.module:
+            if fires_manager.modules:
+                raise RuntimeError("Modules to be run can't be specified both"
+                " on the command line and in the input json")
+            fires_manager.modules = args.module
+
+        # TODO: uncomment/enable '-D'/'--contig-option' and merge the config
+        #  values specified in args.config_options into config. First refactor
+        #  that option to produce nested dict rather than a ConfigParser object
+        #  object.  Make sure output json contains merged config (with tests)
+        # TODO: uncomment/enable '-c'/'--config-file' option, load into
+        #  ConfigParser object, convert that object into a dict, and merge that
+        #  dict into config.  Make sure output json contains merged config
+        #  (with tests)
+
+        # merge loaded file options
+        fires_manager.merge_config(args.config_file_options)
+        fires_manager.merge_config(args.config_options)
+
+        fires_manager.run()
+    except exceptions.BlueSkyModuleError as e:
+        # The error was added to fires_manager's meta data, and will be
+        # included in the output data
+        pass
+    except Exception as e:
+        exit_with_traceback(e)
+
+    if args.output_file:
+        args.output_file = datetimeutils.fill_in_datetime_strings(
+            args.output_file, today=fires_manager.today)
+    fires_manager.dumps(output_file=args.output_file)
+
+if __name__ == "__main__":
+    main()

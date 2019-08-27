@@ -1,0 +1,11 @@
+{
+    "config": {
+        "extrafiles":{
+            "dest_dir": "tmp/{run_id}/extrafiles/",
+            "sets": ["emissionscsv"],
+            "emissionscsv": {
+                "filename": "emissions.csv"
+            }
+        }
+    }
+}
