@@ -8,3 +8,5 @@ merge when done/tested/reviewed
 
 travis *should* be working for basic CI right now, determine CD later
 
+To update the submodule: `git submodule update`
+
