@@ -11,3 +11,32 @@ Builds a basic singularity image from Docker ([note that bash is required to exi
 
 ## Usage (Aeolus HPCC)
 1. ```./hello-world.sh```
+
+## Slater Addon to Run Singularity (once you have the bluesky.sif file)
+* ```singularity shell bluesky.sif```
+* ```
+  echo '{
+    "fire_information": [{
+        "id": "SF11C14225236095807750",
+        "event_of": {
+            "id": "SF11E826544",
+            "name": "Natural Fire near Snoqualmie Pass, WA"
+        },
+        "location": {
+            "perimeter": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [-121.4522115, 47.4316976],
+                            [-121.3990506, 47.4316976],
+                            [-121.3990506, 47.4099293],
+                            [-121.4522115, 47.4099293],
+                            [-121.4522115, 47.4316976]
+                        ]
+                    ]
+                ]
+            },
+            "ecoregion": "southern",
+}' | bsp  fuelbeds consumption emissions
+```
