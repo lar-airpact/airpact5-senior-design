@@ -14,29 +14,11 @@ Builds a basic singularity image from Docker ([note that bash is required to exi
 
 ## Slater Addon to Run Singularity (once you have the bluesky.sif file)
 * ```singularity shell bluesky.sif```
-* ```
-  echo '{
-    "fire_information": [{
-        "id": "SF11C14225236095807750",
-        "event_of": {
-            "id": "SF11E826544",
-            "name": "Natural Fire near Snoqualmie Pass, WA"
-        },
-        "location": {
-            "perimeter": {
-                "type": "MultiPolygon",
-                "coordinates": [
-                    [
-                        [
-                            [-121.4522115, 47.4316976],
-                            [-121.3990506, 47.4316976],
-                            [-121.3990506, 47.4099293],
-                            [-121.4522115, 47.4099293],
-                            [-121.4522115, 47.4316976]
-                        ]
-                    ]
-                ]
-            },
-            "ecoregion": "southern",
-}' | bsp  fuelbeds consumption emissions
-```
+* ```bsp -i 1-fire-24hr-20140530-CA-post-ingestion.json fuelbeds consumption emissions```
+
+## Running on Aeolus and SCP
+* To copy bluesky.sif (and other files by replacing bluesky.sif) to Aeolus Dir: ```scp bluesky.sif YOURUSERNAME@aeolus.wsu.edu/home/YOURUSERNAME```
+* To get singularity on aeolus: ```module load go/1.11.5``` and ```module load singularity/3.0.3/go/1.11.5```
+* To run with 1-fire json: ```singularity shell bluesky.sif``` and then ```bsp -i 1-fire-24hr-20140530-CA-post-ingestion.json fuelbeds consumption emissions``` > ACSVNAME.csv
+* To run with realtime json: ```singularity shell bluesky.sif``` and then ```bsp -i realtime-fire-events20190901.json fuelbeds consumption emissions``` > ACSVNAME.csv
+
