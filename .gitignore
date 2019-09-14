@@ -3,4 +3,7 @@
 
 # Mac OS stuff
 .DS_Store
-.icloud
+*.icloud
+
+# singularity
+*.sif

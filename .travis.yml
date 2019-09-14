@@ -17,7 +17,9 @@ matrix:
 
       - stage: buildc
         language: c
-        script: gcc hello_world.c
+        script: 
+          - gcc hello_world.c
+          - ./a.out
       
       - stage: buildf90
         language: python
@@ -32,4 +34,7 @@ matrix:
         language: c
         services: 
           - docker
-        script: docker run hello-world
+        script: 
+          - docker run hello-world
+          - docker ps
+          - echo "end of multiline script"
