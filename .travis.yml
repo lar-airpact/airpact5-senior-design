@@ -1,18 +1,8 @@
 stages:
-  - buildpy
-  - buildc
   - dockit
 
 matrix:
   include:
-      - stage: buildpy
-        language: python
-        script: python3 hello.py
-
-      - stage: buildc
-        language: c
-        script: gcc hello_world.c
-      
       - stage: dockit
         language: c
         services: 

@@ -1,2 +1,0 @@
-#LIST ORL
-/data/lar/projects/airpact5/AIRRUN/2019/2019041500/EMISSION/fire/bluesky/ptday-2019041500.orl
