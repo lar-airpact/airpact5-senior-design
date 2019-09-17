@@ -1,10 +1,13 @@
 stages:
   - dockit
-
+  
 matrix:
   include:
       - stage: dockit
         language: c
         services: 
           - docker
-        script: docker run hello-world
+        script: 
+          - docker run hello-world
+          - docker ps
+          - echo "end of multiline script"
