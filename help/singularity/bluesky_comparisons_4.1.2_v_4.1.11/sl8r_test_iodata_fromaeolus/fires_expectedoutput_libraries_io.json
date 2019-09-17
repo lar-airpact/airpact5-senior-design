@@ -1,0 +1,104 @@
+{
+    "bluesky_version": "4.1.2",
+    "counts": {
+        "fires": 1
+    },
+    "fires": [
+        {
+            "activity": [
+                {
+                    "active_areas": [
+                        {
+                            "country": "USA",
+                            "ecoregion": "western",
+                            "end": "2015-08-05T17:00:00",
+                            "perimeter": {
+                                "polygon": [
+                                    [-121.45,47.43],
+                                    [-121.39,47.43],
+                                    [-121.39,47.4],
+                                    [-121.45,47.4],
+                                    [-121.45,47.43]
+                                ]
+                            },
+                            "specified_points": [
+                                {
+                                    "area": 120.0,
+                                    "fuelbeds": [
+                                        {
+                                            "fccs_id": "9",
+                                            "pct": 100.0
+                                        }
+                                    ],
+                                    "fuelbeds_total_accounted_for_pct": 100.0,
+                                    "lat": 47.41,
+                                    "lng": -121.41,
+                                    "name": "HMW-32434"
+                                },
+                                {
+                                    "area": 103.0,
+                                    "ecoregion": "western",
+                                    "fuelbeds": [
+                                        {
+                                            "fccs_id": "9",
+                                            "pct": 100.0
+                                        }
+                                    ],
+                                    "fuelbeds_total_accounted_for_pct": 100.0,
+                                    "lat": 47.42,
+                                    "lng": -121.43
+                                }
+                            ],
+                            "start": "2015-08-04T17:00:00",
+                            "state": "WA",
+                            "utc_offset": "-09:00"
+                        }
+                    ],
+                    "name": "First day"
+                }
+            ],
+            "event_of": {
+                "id": "SF11E826544",
+                "name": "Natural Fire near Snoqualmie Pass, WA"
+            },
+            "fuel_type": "natural",
+            "id": "SF11C14225236095807750",
+            "type": "wildfire"
+        }
+    ],
+    "processing": [
+        {
+            "fccsmap_version": "2.1.0",
+            "module": "bluesky.modules.fuelbeds",
+            "module_name": "fuelbeds",
+            "version": "0.1.0"
+        }
+    ],
+    "run_config": {
+        /* The configuration used for the run would be listed
+        here.  It's cut here, for brevity */
+    },
+    "run_id": "154eb63c-adc5-4d4a-8a44-a806869dd672",
+    "runtime": {
+        "end": "2019-05-28T17:32:28.760890Z",
+        "modules": [
+            {
+                "end": "2019-05-28T17:32:28.760839Z",
+                "module_name": "fuelbeds",
+                "start": "2019-05-28T17:32:28.755644Z",
+                "total": "0h 0m 0.005195s"
+            }
+        ],
+        "start": "2019-05-28T17:32:28.755635Z",
+        "total": "0h 0m 0.005255s"
+    },
+    "summary": {
+        "fuelbeds": [
+            {
+                "fccs_id": "9",
+                "pct": 100.0
+            }
+        ]
+    },
+    "today": "2019-05-28"
+}
