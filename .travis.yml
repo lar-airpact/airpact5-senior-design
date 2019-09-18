@@ -1,35 +1,8 @@
 stages:
-  - buildpy
-  - buildc
-  - buildf90
   - dockit
-
-addons:
-  apt:
-    packages:
-    - gfortran
   
 matrix:
   include:
-      - stage: buildpy
-        language: python
-        script: python3 hello.py
-
-      - stage: buildc
-        language: c
-        script: 
-          - gcc hello_world.c
-          - ./a.out
-      
-      - stage: buildf90
-        language: python
-        addons:
-          apt:
-            packages:
-            - gfortran
-        script: gfortran hello.f90
-        
-
       - stage: dockit
         language: c
         services: 
