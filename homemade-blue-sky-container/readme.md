@@ -16,10 +16,3 @@ This pulls down the image from DockerHub and runs it in interactive mode. You'll
 ./BSF_EFO_AP5_SFonly.csh %YYYY%MM%DD
 ```
 where obviously the argument passed to the script is a formatted date.
-
-
-## BlueSky Baby
-- Input can be found [here](http://128.208.123.111/smartfire/streams/realtime).
-- You input a date as YYYYMMDD (same as Aeolus)
-- 
-- Out
