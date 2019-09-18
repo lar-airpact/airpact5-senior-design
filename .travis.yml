@@ -3,11 +3,11 @@ stages:
   
 matrix:
   include:
-      - stage: dockit
-        language: c
-        services: 
-          - docker
-        script: 
-          - docker run hello-world
-          - docker ps
-          - echo "end of multiline script"
+        - stage: dockit
+          language: c
+          services: 
+            - docker
+          script: 
+            - docker pull pnwairfire/bluesky
+            - docker run pnwairfire/bluesky bsp -h
+            - echo "end of multiline script"
