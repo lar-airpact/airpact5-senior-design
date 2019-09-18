@@ -1,0 +1,48 @@
+Notes:
+-u extension does not work for any functions due to lack of privilege (i.e. "crontab -u airpact5 -l")
+"htop" and "ps -ef" examination have shown that user airpact5 likely does not call the cron job
+At some point LAR reorganized the structure of their directories. 
+AIRHOME/run_fastscratch, AIRHOME/run_day2, seem to have been replaced by AIRHOME/run_ap5_day1 and AIRHOME/run_ap5_day2 respectively
+Files exist that are far out of date outside of some sort of "out of date" or "artifacts" folders.
+
+legend:
+-------
+!--- ... ---! : Confirmed incorrect file
+file1.csh --> file2.csh : file1 runs script file2
+file3.csh --> /new/dir/ : file3 accesses files in /new/dir/
+
+Potential Starting Cron:
+---------------------------- 
+!--- airpact5/misc2/airpact5.cron.20170420 <- file is in two seperate misc folders, and is the same size as airpact5/crontab.backup. ---!
+
+Potential Start Csh:
+---------------------------- 
+airpact5/AIRHOME/run_ap5_day1/master4all.csh 
+airpact5/AIRHOME/run_ap5_day2/master4all2.csh
+
+Potential End Csh:
+----------------------------
+     airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg.csh <--- file exists
+!--- airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_emis_fire.csh     <--- file exists ---!
+	
+Confirmed Not Starting Cron:
+----------------------------
+airpact5/misc2/airpact5.cron.20170420
+	- File is out of date. despite three copies of the file existing
+
+Confirmed Not Starting Csh:
+----------------------------
+airpact5/AIRHOME/run_ap5_day1/master4all.csh
+	- Script path originating from this file leads to folders that do not exist
+
+Confirmed Not Final Csh:
+---------------------------- 
+airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_emis_fire.csh 
+	- Not Final Csh
+	- Accesses folders that do not exist
+
+Investigation based on airpact5/misc2/airpact5.cron.20170420:
+------------------------------------------------------------- 
+airpact5/AIRHOME/run_ap5_day1/master4all.csh --> run_ap5_day1/submit_fireemis.csh --> run_ap5_day1/qsub4fireemis.csh --> run_ap5_day1/emis/fire_orl/run_emis_fire.csh && run_ap5_day1/emis/fire_orl/run_emis_canfire.csh
+	--> ./emis/fire_orl/run_emis_fire.csh    --> data/lar/projects/airpact5/AIRRUN/EMISSION/fire/bluesky/              <-- AIRRUN/EMISSION/ does not exist. 
+	--> ./emis/fire_orl/run_emis_canfire.csh --> data/lar/projects/airpact5/AIRRUN/EMISSION/fire_can/bluesky/          <-- AIRRUN/EMISSION/ does not exist. 
