@@ -57,7 +57,7 @@ airpact5/AIRHOME/run_ap5_day1/master4all.csh --> run_ap5_day1/submit_fireemis.cs
 	--> ./emis/fire_orl/run_emis_fire.csh    --> data/lar/projects/airpact5/AIRRUN/yyyymmdd00/EMISSION/fire/bluesky/     --> Data files        <-- Folder Created at runtime on the given day
 	--> ./emis/fire_orl/run_emis_canfire.csh --> data/lar/projects/airpact5/AIRRUN/yyyymmdd00/EMISSION/fire_can/bluesky/ --> Data files        <-- Folder Created at runtime on the given day
 
-More investigation from airpact5/AIRHOME/run_ap5_day1/master4all.csh:
+More investigation from airpact5/AIRHOME/run_ap5_day1/master4all.csh: 
 -------------------------------------------------------------
 airpact5/AIRHOME/run_ap5_day1/master4all.csh --> run_ap5_day1/submit_fireemis.csh --> blueprints/blueprint_qsub_fireemis.txt --> run_ap5_day1/qsub4fireemis.csh --> run_ap5_day1/emis/fire_orl/run_emis_fire.csh | ---dead ends
 	-run_bluesky_arg.csh must be ran between submit_fireemis.csh and run_emis_fire.csh, because the latter checks bluesky files but does not call any kind of run bluesky. neither does qsub4fireemis
