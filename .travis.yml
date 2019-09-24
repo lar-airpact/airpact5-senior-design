@@ -8,6 +8,7 @@ matrix:
           services: 
             - docker
           script: 
-            - docker pull pnwairfire/bluesky
-            - docker run pnwairfire/bluesky bsp -h
+            - docker pull pnwairfire/bluesky-framework
+            #bluesky binary is not at root of image, hence long path
+            - docker run pnwairfire/bluesky-framework /bluesky/dist/bluesky/./bluesky -h -h
             - echo "end of multiline script"
