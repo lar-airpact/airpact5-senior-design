@@ -7,3 +7,4 @@
 
 # singularity
 *.sif
+.vscode/settings.json
