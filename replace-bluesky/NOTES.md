@@ -2,24 +2,19 @@
 
 #### Get the Image
 ```
-docker pull pnwairfire/bluesky-framework
-docker run -ti pnwairfire/bluesky-framework
-```
-
-#### Copy config file
-```
-export CONTAINER_ID=123456789
-docker cp defaultLAR_SFonly.ini $CONTAINER_ID:/bluesky/dist/bluesky/setup/
+docker pull larairpact/bluesky-framework
+docker run -ti larairpact/bluesky-framework
 ```
 
 #### Run the Container
-* need to copy in the defaultLAR_SFonly.ini file into the container -- should just be there... I suppose we could fork the image
 * run the container
 ```
-/bluesky/dist/bluesky/base/lib/bluesky -d 2019090100Z -K no-archive defaultLAR_SFonly
+./bluesky -d 2019090100Z -K no-archive defaultLAR_SFonly
 ```
-* get the following python scripts to work (will need to edit the hardcoded paths and what not...)
+
+#### TODOs
+* replace the above call with a call to ```BSF_EFO_AP5_SFonly.csh``` so that the following python scripts work (will probably need to edit the hardcoded paths and what not...)
   * fire_ptday_SFonly_Zhang.py
   * fire_ptinv_SFonly_Zhang.py
   * write_kml.py
-* get the output from the container and put it where Aeolus expects...
+* if running NOT on Aeolus, don't do anything with the output. Otherwise, get the output from the container and put it where Aeolus expects. Should be able to write directly to the host's file system using Singularity.
