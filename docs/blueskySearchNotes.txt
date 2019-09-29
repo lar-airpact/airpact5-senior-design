@@ -1,0 +1,103 @@
+./AIRHOME/run_data/emis/fire_orl/run_bluesky_noarg.csh:					#   > run_bluesky_noarg.csh
+./AIRHOME/run_data/emis/fire_orl/run_bluesky_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_data/README:   								run_bluesky_noarg.csh
+./AIRHOME/TEST/crontab_scripts.lst:							~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh
+./AIRHOME/TEST/crontab_scripts_csh.lst:							/home/airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:#!/bin/csh -f
+./AIRHOME/TEST/crontab_scripts_csh.lst:							/home/airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:#   > run_bluesky_noarg.csh
+./AIRHOME/TEST/crontab_scripts_csh.lst:							/home/airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:   ssh $bluenode "/opt/bluesky/bluesky_3.5.1/BSF_EFO_AP5_SFonly.csh ${YMD}" >&! /fastscratch/airpact5/AIRRUN/${year}/${YMD}00/LOGS/bluesky_cron.log
+./AIRHOME/TEST/crontab_-l.log:								05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./AIRHOME/run_ap5_day1/CRONTAB_ending_103117.RM:					05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./AIRHOME/run_ap5_day1/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_ap5_day1/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_arg.csh.save:				#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_arg.csh:				#       Update 06/26/18 JKV matching changes in the run_bluesky_noarg.csh script 
+./AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg_jkv.csh:				#   > run_bluesky_noarg.csh
+./AIRHOME/run_ap5_day1/CRONTAB_fixes_103117.RM:						05    22 *   *     *     ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/crontab_bluesky.log
+./AIRHOME/run_old_day1/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_old_day1/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./AIRHOME/run_old_day1/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./AIRHOME/run_old_day1/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./AIRHOME/run_old_day1/CRONTAB_ending_103117.RM:					05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./AIRHOME/run_old_day1/CRONTAB_fixes_103117.RM:						05    22 *   *     *     ~airpact5/AIRHOME/run_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_day1/emis/fire_orl/crontab_bluesky.log
+./misc/airpact5.cron.20170420:								05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./misc/airpact5.cron.20171103:								05    22 *   *     *     ~airpact5/AIRHOME/run_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_day1/emis/fire_orl/crontab_bluesky.log
+./misc/xxxx:										05    22 *   *     *     ~airpact5/AIRHOME/run_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_day1/emis/fire_orl/crontab_bluesky.log
+./projects/data_for_IDEQ/run/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/data_for_IDEQ/run/emis/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/initialsetup/run/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/initialsetup/run/emis/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/oregon_rwc_update/run/emis/fire_orl/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/oregon_rwc_update/run/emis/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/oregon_rwc_update/run/README:  				 			run_bluesky_noarg.csh
+./projects/AP5forMCIP4.2/run/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/AP5forMCIP4.2/run/emis/fire_orl/backup/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/AP5forMCIP4.2/run/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/AP5forMCIP4.2/run/emis/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/AIRPACT-Fire/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/AIRPACT-Fire/run_fastscratch/emis/fire_orl/backup/run_bluesky_noarg.csh:	#   > run_bluesky_noarg.csh
+./projects/AIRPACT-Fire/run_fastscratch/emis/fire_orl/backup/run_bluesky_arg.csh:	#   > run_bluesky_arg.csh YYYYMMDD
+./projects/AIRPACT-Fire/run_fastscratch/emis/fire_orl/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/AIRPACT-Fire/run_fastscratch/emis/fire_orl_new/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/SodaFire/run_fastscratch/emis/fire_orl/backup/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/SodaFire/run_fastscratch/emis/fire_orl/backup/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/SodaFire/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/SodaFire/run_fastscratch/emis/fire_orl/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/SodaFire/run_fastscratch/emis/fire_orl_new/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch/emis/fire_orl/backup/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/yawns/run_fastscratch/emis/fire_orl/backup/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/yawns/run_fastscratch/emis/fire_orl/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch/emis/fire_orl_new/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch_newmcip_no_work/emis/fire_orl/backup/run_bluesky_noarg.csh:	#   > run_bluesky_noarg.csh
+./projects/yawns/run_fastscratch_newmcip_no_work/emis/fire_orl/backup/run_bluesky_arg.csh:	#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch_newmcip_no_work/emis/fire_orl/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/yawns/run_fastscratch_newmcip_no_work/emis/fire_orl/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/yawns/run_fastscratch_newmcip_no_work/emis/fire_orl_new/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/TCOPS/run/emis/fire_orl/backup/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/TCOPS/run/emis/fire_orl/backup/run_bluesky_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+./projects/TCOPS/run/emis/fire_orl/run_bluesky_noarg.csh:					#   > run_bluesky_noarg.csh
+./projects/TCOPS/run/emis/fire_orl/run_bluesky_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+./projects/Urbanova/run/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/Urbanova/run/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/Urbanova/run/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/Urbanova/run/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/fire-soa_nt/fire_orl/run_bluesky_noarg.csh:					#   > run_bluesky_noarg.csh
+./projects/fire-soa_nt/fire_orl/backup/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/fire-soa_nt/fire_orl/backup/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/fire-soa_nt/fire_orl/run_bluesky_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+Binary file ./projects/Urbanova_nov3017.tar matches
+./projects/ports/run/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/ports/run/emis/fire_orl/backup/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/ports/run/emis/fire_orl/run_bluesky_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run/emis_1.33-km/fire_orl/backup/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/ports/run/emis_1.33-km/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run/emis_1.33-km/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/ports/run/emis_1.33-km/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/X_run_4km/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/ports/X_run_4km/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/X_run_4km/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/ports/X_run_4km/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/X_run_4km/emis_1.33-km/fire_orl/backup/run_bluesky_noarg.csh:		#   > run_bluesky_noarg.csh
+./projects/ports/X_run_4km/emis_1.33-km/fire_orl/backup/run_bluesky_arg.csh:		#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/X_run_4km/emis_1.33-km/fire_orl/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/ports/X_run_4km/emis_1.33-km/fire_orl/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run_4km/CRONTAB_ending_103117.RM:					05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./projects/ports/run_4km/emis/fire_orl/backup/run_bluesky_arg.csh:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run_4km/emis/fire_orl/backup/run_bluesky_noarg.csh:			#   > run_bluesky_noarg.csh
+./projects/ports/run_4km/emis/fire_orl/run_bluesky_arg.csh.save:			#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run_4km/emis/fire_orl/run_bluesky_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./projects/ports/run_4km/emis/fire_orl/run_bluesky_arg.csh:				#       Update 06/26/18 JKV matching changes in the run_bluesky_noarg.csh script 
+./projects/ports/run_4km/emis/fire_orl/run_bluesky_noarg.csh:				#   > run_bluesky_noarg.csh
+./projects/ports/run_4km/CRONTAB_fixes_103117.RM:					05    22 *   *     *     ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/crontab_bluesky.log
+Binary file ./projects/ports/run_4km.tar matches
+./projects/BOISE/run_bluesky_arg.csh:							#   > run_bluesky_arg.csh YYYYMMDD
+./projects/BOISE/run_bluesky_updated_fire2017_arg.csh:					#   > run_bluesky_arg.csh YYYYMMDD
+./projects/BOISE/run_bluesky_updated_can_fire2017_arg.csh:				#   > run_bluesky_arg.csh YYYYMMDD
+./crontab.backup:									05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./misc2/airpact5.cron.20170420:								05    22 *   *     *     ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_fastscratch/emis/fire_orl/crontab_bluesky.log
+./crontab_jobs.RM:									05    22 *   *     *     ~airpact5/AIRHOME/run_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_day1/emis/fire_orl/crontab_bluesky.log
+./crontab.backup_051018:								05    22 *   *     *     ~airpact5/AIRHOME/run_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_day1/emis/fire_orl/crontab_bluesky.log
+./crontab.backup_071818:								05    22 *   *     *     ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/run_bluesky_noarg.csh   > ~airpact5/AIRHOME/run_ap5_day1/emis/fire_orl/crontab_bluesky.log
