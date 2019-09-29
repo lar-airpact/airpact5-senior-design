@@ -1,0 +1,15 @@
+run_bluesky_noarg.csh:
+----------------------
+Lines 30 - 33 need to be changed:
+30:  remove this line, as it is just setting an environment variable that was used to ssh
+31: change the ssh to accessing the container bind mount
+31 - 33: change file movements away from mv to appropriate methods. 
+
+run_bluesky_arg.csh:
+----------------------
+Lines 17 - 20 need to be changed:
+17:  remove this line, as it is just setting an environment variable that was used to ssh
+18: change the ssh to accessing the container bind mount
+18 - 20: change file movements away from mv to appropriate methods. 
+
+
