@@ -9,16 +9,26 @@ matrix:
           services: 
             - docker
           script: 
-            - docker pull pnwairfire/bluesky-framework
-            #bluesky binary is not at root of image, hence long path
-            - docker run pnwairfire/bluesky-framework /bluesky/dist/bluesky/./bluesky -h -h
+            - pwd
+            - cd test/mvp-output
+            - echo "The pwd is now $(pwd)"
+            - docker run -it larairpact/bluesky-framework ./bluesky -h
+            - echo "bluesky pulls/builds successfully"
 
-        - stage: data-verification
+        - stage: data-verification          
+          services:        
+            - docker
           language: python
-          python: 
-            - "3.7"
+          # python: 
+          #   - "3.7"
           install:
             - pip install pandas
           script:
+            - pwd
             - cd test/mvp-output
+            - echo "The pwd is now $(pwd)"
+            - echo "Gathering data to test"
+            - docker run -it --mount type=bind,source="$(pwd)",target=/bluesky/dist/bluesky/output/ larairpact/bluesky-framework ./bluesky -d 2019090100Z -K no-archive defaultLAR_SFonly
+            - mv 2019090100.1 newinput
+            - echo "testing data output"
             - python3 test.py
