@@ -3,6 +3,8 @@
 ## Description
 This repository contains the work for Broken Tooth's senior design capstone project (CptS 421/423 at Washington State University).
 
+![](https://travis-ci.com/lar-airpact/airpact5-senior-design.svg?branch=staging)
+
 ## Repository Guide
 Explaining the contents of the repository
 #### help
