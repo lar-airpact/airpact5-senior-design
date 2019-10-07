@@ -39,11 +39,12 @@ done
 
 # Pull the singularity image from "master" branch
 # as built from https://github.com/lar-airpact/bluesky-framework
-singularity pull "shub://${GITHUB_ORG}/${GITHUB_REPO}:${TAG}"
+# F to overwrite existing (but still uses cache if unchanged)
+singularity pull -F "shub://${GITHUB_ORG}/${GITHUB_REPO}:${TAG}"
 
 # Execute BSF Singularity Image -- replacing Ubuntu Server :-)
 BSF_IMAGE_NAME="${GITHUB_REPO}_${TAG}.sif"
-singularity exec $BIND_CMD $BSF_IMAGE_NAME "${BS_DIR}BSF_EFO_AP5_SFonly.csh ${YMD}00Z"
+singularity exec $BIND_CMD $BSF_IMAGE_NAME "${BS_DIR}BSF_EFO_AP5_SFonly.csh ${YMD}"
 
 # Remove hacked writeable layer
 rm -rf $BSF_OUTPUT_TEMP
