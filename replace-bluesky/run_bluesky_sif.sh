@@ -12,7 +12,9 @@
 # image is writeable. This is a "hack" to create a writeable layer.
 # In the future, we'd recommend looking into persistent overlays.
 
-BSF_IMAGE_NAME='bluesky.sif'
+GITHUB_ORG='lar-airpact'
+GITHUB_REPO='bluesky-framework'
+TAG='latest'
 BSF_OUTPUT_TEMP='bsf_output_temp/'
 BS_DIR='/bluesky/dist/bluesky/'
 YMD=$1
@@ -37,9 +39,10 @@ done
 
 # Pull the singularity image from "master" branch
 # as built from https://github.com/lar-airpact/bluesky-framework
-singularity pull shub://lar-airpact/bluesky-framework:latest
+singularity pull "shub://${GITHUB_ORG}/${GITHUB_REPO}:${TAG}"
 
 # Execute BSF Singularity Image -- replacing Ubuntu Server :-)
+BSF_IMAGE_NAME="${GITHUB_REPO}_${TAG}.sif"
 singularity exec $BIND_CMD $BSF_IMAGE_NAME "${BS_DIR}BSF_EFO_AP5_SFonly.csh ${YMD}00Z"
 
 # Remove hacked writeable layer
