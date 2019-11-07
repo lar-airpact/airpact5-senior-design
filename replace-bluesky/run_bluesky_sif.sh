@@ -27,15 +27,21 @@ for writeableDir in ${directoriesWrittenTo[@]}; do
    mkdir -p $BSF_OUTPUT_TEMP$writeableDir
 done
 
-# Load modules required to run Singularity
-module load go/1.11.5
-module load singularity/3.0.3/go/1.11.5
+# Load modules required to run Singularity if on Aeolus
+if [[ `hostname` == "aeolus.wsu.edu" ]]; then
+   echo "Loading go and singularity modulefiles into shell environment"
+   module purge
+   module list
+   module load singularity/3.4.2/go/1.11.5
+   module list
+fi
 
 # Create command string to add bind mounts
 for writeableDir in ${directoriesWrittenTo[@]}; do
-   echo $BSF_OUTPUT_TEMP$writeableDir
    BIND_CMD=$BIND_CMD"--bind $(pwd)/${BSF_OUTPUT_TEMP}${writeableDir}:${BS_DIR}${writeableDir} "
 done
+
+echo $BIND_CMD
 
 # Pull the singularity image from "master" branch
 # as built from https://github.com/lar-airpact/bluesky-framework
