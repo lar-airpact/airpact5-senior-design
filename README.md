@@ -13,5 +13,3 @@ Guides on how to do all basic tasks necessary for this project, including runnin
 Our attempts at containerizing BlueSky by simply taking the contents of AIRPACT's version of BlueSky and sticking them in a Docker Image.
 #### replace-bluesky
 Any work, scripts, and documentation for replacing the BlueSky Server with an official Singularity Image of BlueSky on Aeolus HPCC.
-#### test
-Test scripts and data to ensure output we get from the Singularity Image of BlueSky is consistent with what we expect -- specifically so we can ensure we're using the correct configurations and the output is correct.
