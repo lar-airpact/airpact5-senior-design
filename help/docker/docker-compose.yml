@@ -1,0 +1,9 @@
+version: "2.2"
+services:
+    bin:
+        image: bash
+        command: bash -c "sleep 5"
+        cpu_count: 1
+        mem_limit: 2gb
+        mem_reservation: 2gb
+            

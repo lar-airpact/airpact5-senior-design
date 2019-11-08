@@ -1,0 +1,2 @@
+# Write 'hello world' to a file every time at 20:25 every day
+25 20 * * * echo 'hello world' > /home/$USER/helloworld.txt 2>&1

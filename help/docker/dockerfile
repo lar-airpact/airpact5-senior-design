@@ -1,0 +1,12 @@
+FROM ubuntu:16.04
+LABEL maintainer="garrett.rudisill@gmail.com"
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install htop
+
+# Add script to image
+COPY hello-from-the-inside.sh .
+
+# Run the script
+CMD ["/bin/bash", "hello-from-the-inside.sh"]
