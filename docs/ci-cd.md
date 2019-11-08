@@ -1,14 +1,7 @@
-# **Notes from August 26th lecture on CI/CD process in gitlab**
+# Continuous Integration & Continuous Deployment
 
-Why we're testing the software:
-1. Build a checklist to know when feature complete
-2. To evaluate changes in code for satisfication of design/customer req's
-3. Other stuff in the slides (Crandall moved too fast)
-4. Because you should (I guess, definitely the least important reason ***/s***)
+## How It Works
+![Image of Architecture](/docs/figs/architecture.png)
+Our architecture utilizes a Continuous Integration (CI) system known as Travis CI. It also utilizes a Continuous Deployment (CD) system, which is built on top the CI system. Once the CI system deems that a branch is ready to be merged and all developers approve it, Git Hooks will deploy these successfully tested artifacts to DockerHub and SingularityHub.
 
-# ***CONTINUOUS INTEGRATION IS REQUIRED***
-Continuous depoyment is not, but highly suggested
-
-## Actual notes:
-
-
+The testing process itself runs our containerized Bluesky Framework System and compares the output data from the container to the output data from the Bluesky Framework System that is currently running as an Ubuntu Server on the Aeolus High Performance Computing Cluster. These tests are run automatically any time that commits are pushed to a branch or pull requests are made against another branch. This ensures that all changes do not affect the output of the system when moved into the production environment.
